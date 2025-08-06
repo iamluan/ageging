@@ -3,7 +3,7 @@ Steps:
 Aggregates amount_paid SUM(amount_paid) from the payments table for documents of type with GROUP BY (document_id).
 
 2. Invoices/CreditNotes aging CTE  
-- Using LEGT JOIN invoices and credit notes with their payments to only take the payment document.  
+- Using LEGT JOIN invoices and credit notes with their payments to include the unpaid documents.  
 - Calculate the number unpaid days with DATE_DIFF('2025-07-07', iv.invoice_date, DAY) AS age_in_days  
 - Calculate the unpaid amount of each document iv.total_amount - COALESCE(p.total_paid, 0) AS unpaid_amount  
 - Filters for invoices with unpaid balances WHERE iv.total_amount - COALESCE(p.total_paid, 0) > 0  
